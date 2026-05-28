@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  color: #2f3133;
+  background: #f8f4ec;
+  font-family:
+    Inter, "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(247, 242, 232, 0.92), rgba(250, 248, 243, 0.98)),
+    #f8f4ec;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(44, 86, 91, 0.28);
+  outline-offset: 2px;
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid #ded5c8;
+  background: #ffffff;
+  padding: 0.625rem 0.75rem;
+  color: #303234;
+}
