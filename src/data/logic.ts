@@ -1,5 +1,6 @@
 import type { AppData, ExamSettings, MaterialUnit, Priority, QuestionLog, ReviewItem, StudyLog, StudyTask, Topic } from '../types';
 import { taskTypeLabels } from './labels';
+import { createId } from '../utils/id';
 
 export const todayString = (date = new Date()) => toDateString(date);
 
@@ -85,7 +86,7 @@ const createGeneratedTask = (
   estimatedMinutes: number,
   topic?: Topic,
 ): StudyTask => ({
-  id: crypto.randomUUID(),
+  id: createId(),
   scheduledDate: date,
   type,
   title,
@@ -214,7 +215,7 @@ export const addQuestionLogWithReview = (data: AppData, log: QuestionLog): AppDa
   questionLogs: [log, ...data.questionLogs],
   reviewItems: [
     {
-      id: crypto.randomUUID(),
+      id: createId(),
       topicId: log.topicId,
       dueDate: nextReviewDateForQuestion(log),
       status: 'pending',
@@ -230,7 +231,7 @@ export const addStudyLogWithReview = (data: AppData, log: StudyLog): AppData => 
   reviewItems: log.topicId
     ? [
         {
-          id: crypto.randomUUID(),
+          id: createId(),
           topicId: log.topicId,
           dueDate: addDays(log.date, 1),
           status: 'pending',
@@ -263,7 +264,7 @@ export const completeReview = (
     ...data,
     reviewItems: [
       {
-        id: crypto.randomUUID(),
+        id: createId(),
         topicId: review.topicId,
         dueDate: addDays(date, days),
         status: 'pending',

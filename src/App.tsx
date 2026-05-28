@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import type { AppData, Material, MaterialUnit, QuestionLog, Resource, ReviewItem, StudyLog, StudyTask, StudyTaskType } from './types';
 import { loadData, normalizeData, resetData, saveData } from './data/storage';
+import { createId } from './utils/id';
 import {
   addQuestionLogWithReview,
   addStudyLogWithReview,
@@ -395,7 +396,7 @@ function ManualTaskForm({
       tasks: [
         ...current.tasks,
         {
-          id: crypto.randomUUID(),
+          id: createId(),
           scheduledDate: date,
           type,
           subjectId: topic?.subjectId,
@@ -516,7 +517,7 @@ function MaterialForm({ updateData }: { updateData: (updater: (current: AppData)
       materials: [
         ...current.materials,
         {
-          id: crypto.randomUUID(),
+          id: createId(),
           title: title.trim(),
           type,
           note: note.trim() || undefined,
@@ -571,7 +572,7 @@ function MaterialUnitForm({
       materialUnits: [
         ...current.materialUnits,
         {
-          id: crypto.randomUUID(),
+          id: createId(),
           materialId,
           subjectId,
           topicId: topicId || undefined,
@@ -737,7 +738,7 @@ function ResourceForm({
       ...current,
       resources: [
         {
-          id: crypto.randomUUID(),
+          id: createId(),
           title: title.trim(),
           type,
           subjectId,
@@ -912,7 +913,7 @@ function StudyLogForm({
     event.preventDefault();
     if (!topicId) return;
     const log: StudyLog = {
-      id: crypto.randomUUID(),
+      id: createId(),
       date,
       topicId,
       minutes,
@@ -1113,7 +1114,7 @@ function MistakePage({ data, updateData }: { data: AppData; updateData: (updater
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
     const log: QuestionLog = {
-      id: crypto.randomUUID(),
+      id: createId(),
       date: todayString(),
       subjectId,
       topicId: effectiveTopicId,

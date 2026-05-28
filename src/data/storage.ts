@@ -1,5 +1,6 @@
 import type { AppData, StudyTask } from '../types';
 import { defaultExamSettings, seedInitialData } from './defaults';
+import { createId } from '../utils/id';
 
 const STORAGE_KEY = 'takuken-study-tracker:v1';
 
@@ -25,7 +26,7 @@ export const loadData = (): AppData => {
 const normalizeTask = (task: Partial<StudyTask>): StudyTask => {
   const scheduledDate = task.scheduledDate ?? task.date ?? new Date().toISOString().slice(0, 10);
   return {
-    id: task.id ?? crypto.randomUUID(),
+    id: task.id ?? createId(),
     scheduledDate,
     originalDate: task.originalDate,
     type: task.type ?? 'memo',
