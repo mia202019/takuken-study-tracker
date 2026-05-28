@@ -7,6 +7,26 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      window.__APP_BOOT_OK__ = false;
+      window.__APP_BOOT_ERROR__ = '';
+
+      setTimeout(function () {
+        if (window.__APP_BOOT_OK__) return;
+        var root = document.getElementById('root');
+        if (!root) return;
+        var msg = window.__APP_BOOT_ERROR__ || 'アプリ起動時にエラーが発生しました。';
+        root.innerHTML =
+          '<main style="padding:24px;font-family:system-ui,sans-serif;line-height:1.6;">' +
+          '<h1 style="font-size:20px;margin:0 0 12px;">画面表示エラー</h1>' +
+          '<p style="margin:0 0 10px;">ページが真っ白な場合、起動時エラーで止まっている可能性があります。</p>' +
+          '<pre style="white-space:pre-wrap;background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:12px;">' +
+          msg +
+          '</pre>' +
+          '<p style="margin-top:12px;">再読み込みしても同じなら、このメッセージを共有してください。</p>' +
+          '</main>';
+      }, 2500);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
